@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./empleados-activos.component.css']
 })
 export class EmpleadosActivosComponent {
+  filtro = '';
+
   empleados = [
     { nombre: 'García, Ana', legajo: '1023', puesto: 'Operaria', sector: 'Producción', fecha: '12/03/2021', estado: 'Activo' },
     { nombre: 'Pérez, Luis', legajo: '0876', puesto: 'Analista Sr.', sector: 'RRHH', fecha: '05/09/2019', estado: 'Activo' },
@@ -13,4 +15,11 @@ export class EmpleadosActivosComponent {
     { nombre: 'González, Miguel', legajo: '0745', puesto: 'Supervisor', sector: 'Ventas', fecha: '15/07/2020', estado: 'Activo' },
     { nombre: 'Martínez, Carla', legajo: '1156', puesto: 'Contadora', sector: 'Administración', fecha: '03/11/2022', estado: 'Activo' }
   ];
+
+  get empleadosFiltrados() {
+    return this.empleados.filter(emp =>
+      emp.nombre.toLowerCase().includes(this.filtro.toLowerCase()) ||
+      emp.legajo.includes(this.filtro)
+    );
+  }
 }
